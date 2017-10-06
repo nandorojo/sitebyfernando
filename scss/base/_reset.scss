@@ -3,3 +3,7 @@
     width: 0px;
     background: transparent; /* make scrollbar transparent */
 }
+
+@-ms-viewport{
+  width: device-width;
+}
