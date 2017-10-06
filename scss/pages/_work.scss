@@ -1,0 +1,33 @@
+/* Pages -> Work Styles */
+
+.workJawn {
+    padding: 1em;
+    @include mq($from: tablet) {
+        padding: 2em
+    }
+    @include mq($from: desktop) {
+        padding: 3em;
+    }
+}
+
+.giveEmTheWork {
+    border-radius: 10px;
+    min-height: 500px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    transition: transform .25s ease;
+    will-change: transform;
+    #patos & {
+        background-color: #533592;
+        color: white;
+    }
+    .workLogo {
+        margin: 20px 0 0 20px;
+        width: 250px;
+        max-width: 50%; 
+    }
+}

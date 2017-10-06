@@ -23,8 +23,7 @@ $(document).ready(function () {
     }
 
     function bubbleScroll() { // make the bubbles move on scroll
-        var $bubbles = $('.bubbleWrap'),
-            screenWidth = $(window).width();
+        var $bubbles = $('.bubbleWrap');
         if (scroll < ($('#homeFirst').height() + window.innerHeight)) {
             $bubbles.each(function (i) {
                 var horizontalScroll = -(scroll / 5);
@@ -33,9 +32,21 @@ $(document).ready(function () {
             });
         }
     }
-    
+
+    function workScroll() {
+        $('.workJawn').each(function () {
+            var theHeight = $(this).height(),
+                theScroll = scroll + $(window).height() - $(this).offset().top;
+            console.log(theScroll);
+            if (theScroll > theHeight || theScroll < 0) {
+                return;
+            }
+            $(this).css('transform', 'translateY(-' + (theScroll / 4) + 'px)');
+        });
+    }
+
     function headerFadeScroll() {
-        $('#homeSecond').find('h3, p').each(function(){
+        $('#homeSecond').find('h3, p').each(function () {
             var distanceToTop = $(this).offset().top;
             if (scroll >= (distanceToTop - $(window).height() - 50) && !$(this).hasClass('scrollingDone')) {
                 $(this).removeClass('fadeOut');
@@ -44,6 +55,10 @@ $(document).ready(function () {
             }
         });
     }
+
+    bubbleScroll();
+    headerFadeScroll();
+    workScroll();
 
     if (window.location.hash) {
         var hash = window.location.hash.substring(1), //Puts hash in variable, and removes the # character
@@ -64,6 +79,7 @@ $(document).ready(function () {
         scroll = $(window).scrollTop();
         bubbleScroll();
         headerFadeScroll();
+        workScroll();
     });
 
     $('a[href$=".html"]').on('click', function (e) { // simulate page changes without actually changing page
