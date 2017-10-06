@@ -1,0 +1,55 @@
+/* Base -> Typography Styles */
+
+* {
+    font-family: map-get($font, 'familyPrimary')!important;
+}
+
+body {
+    font-size: 140%;
+    color: map-get($color, 'foreground');
+}
+
+//
+//h1 {
+//    font-size: 2em;
+//    margin: .5em 0;
+//}
+h1,
+h2 {
+    font-weight: bold;
+}
+
+.gradientText {
+    background: -webkit-linear-gradient(180deg, #a13bfd, #32dbf1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @include transition-all;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    &:not(.button) {
+        color: $color-primary;
+        will-change: color;
+        transition: color .25s ease;
+    }
+    &:hover {
+        color: $color-secondary;
+        text-decoration: none;
+    }
+}
+
+// Highlighting text
+::-moz-selection {
+    /* Code for Firefox */
+    color: map-get($selection, 'background');
+    background: map-get($selection, 'color');
+}
+
+::selection {
+    /* Code for Firefox */
+    color: map-get($selection, 'background');
+    background: map-get($selection, 'color');
+}

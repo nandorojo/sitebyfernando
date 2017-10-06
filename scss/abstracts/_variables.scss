@@ -1,0 +1,23 @@
+/* Abstracts -> variables partial */
+$color: (
+    'primary': #FD3E4A,
+    'secondary': #276cda,
+    'background': white,
+    'foreground': #00274c
+);
+
+$color-primary: map-get($color, 'primary');
+$color-secondary: map-get($color, 'secondary');
+$color-tertiary: darkblue;
+$color-quadruple: #2bde73;
+$color-background: map-get($color, 'background');
+$color-foreground: map-get($color, 'foreground');
+
+$selection: (
+    'background': map-get($color, 'secondary'),
+    'color': map-get($color, background)
+);
+
+$font: (
+    'familyPrimary': #{'Avenir Next', sans-serif, 'arial'},
+);

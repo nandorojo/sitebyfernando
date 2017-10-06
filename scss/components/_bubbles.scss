@@ -1,0 +1,119 @@
+.bubbleWrap {
+    display: none;
+    &.active {
+        display: block;
+    }
+    transition: transform .1s ease;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    .miniWrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.bubble {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: $color-primary;
+    border-radius: 50%;
+    animation-duration: .6s;
+    transition: transform .5s ease;
+    will-change: transform;
+    .bubbleGlow {
+        position: absolute;
+        height: 60%;
+        width: 60%;
+        left: 15%;
+        top: 15%;
+        border-radius: 50%;
+        border: solid 8px;
+        border-color: transparent transparent transparent white;
+        transform: rotate(45deg);
+    }
+    &.mini {
+        width: 40px;
+        height: 40px;
+    }
+    &.small {
+        width: 80px;
+        height: 80px;
+    }
+    &.medium {
+        width: 120px;
+        height: 120px;
+        @include mq($from: tablet) {
+            width: 250px;
+            height: 250px;
+        }
+    }
+    &.large {
+        width: 250px;
+        height: 250px;
+        @include mq($from: tablet) {
+            width: 320px;
+            height: 320px;
+        }
+    }
+    &.xLarge {
+        width: 40vw;
+        height: 40vw;
+    }
+    &.prim {
+        background: $color-primary;
+    }
+    &.sec {
+        background: $color-secondary;
+    }
+    &.tert {
+        background: $color-tertiary;
+    }
+    &.quad {
+        background: $color-quadruple;
+    }
+    &.one {
+        top: auto;
+        bottom: -3%;
+        left: -25%;
+        @include mq($from: tablet) {
+            top: 20%;
+            left: -2%;
+            bottom: auto;
+        }
+        animation-delay: .6s;
+    }
+    &.two {
+        top: -25%;
+        right: 30%;
+        @include mq($from: tablet) {
+            top: 3%;
+            right: 10%;
+        }
+        animation-delay: .75s;
+    }
+    &.three {
+        top: 17%;
+        right: 4%;
+        @include mq($from: tablet) {
+            top: 20%;
+            right: 3%;
+        }
+        animation-delay: .8s;
+    }
+    &.four {
+        top: 76%;
+        right: -9%;
+        @include mq($from: tablet) {
+            top: 65%;
+            right: 10%;
+        }
+        animation-delay: .96s;
+    }
+}

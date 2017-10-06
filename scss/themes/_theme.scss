@@ -1,0 +1,30 @@
+/* Themes -> Theme partial */
+
+// General Styles
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+body {
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.page {
+    display: none;
+    &.active {
+        display: block;
+    }
+}
+
+.content {
+	margin: 80px 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
