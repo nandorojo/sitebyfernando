@@ -1,7 +1,7 @@
 /* Base -> Typography Styles */
 
 * {
-    font-family: map-get($font, 'familyPrimary')!important;
+    font-family: map-get($font, 'familyPrimary');
 }
 
 body {
@@ -9,12 +9,10 @@ body {
     color: map-get($color, 'foreground');
 }
 
-//
-//h1 {
-//    font-size: 2em;
-//    margin: .5em 0;
-//}
 h1 {
+    @include mq($from: tablet) {
+        font-size: 3em;
+    }
     @include mq($from: desktop) {
         font-size: 3.5em;
     }
@@ -23,6 +21,10 @@ h1 {
 h1,
 h2 {
     font-weight: bold;
+}
+
+.subtitle {
+    font-family: 'oxide solid pro'
 }
 
 .gradientText {
@@ -36,9 +38,11 @@ a {
     text-decoration: none;
     color: inherit;
     display: inline-block;
+    font-weight: 600;
     &:not(.button) {
         color: $color-primary;
         will-change: color;
+        -webkit-transition: color .25s ease;
         transition: color .25s ease;
     }
     &:hover {
@@ -48,6 +52,12 @@ a {
 }
 
 // Highlighting text
+::-moz-selection {
+    /* Code for Firefox */
+    color: map-get($selection, 'background');
+    background: map-get($selection, 'color');
+}
+
 ::-moz-selection {
     /* Code for Firefox */
     color: map-get($selection, 'background');

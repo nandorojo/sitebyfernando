@@ -1,101 +1,71 @@
 $(document).ready(function () {
     'use strict';
-    var scroll = $(window).scrollTop();
+    var $window = $(window),
+        $body = $('body'),
+        scroll = $window.scrollTop(),
+        pageHistoryState = 0;
 
-    function loadSite() {
-        $('#homeFirst .buttonList').show(); // show button container on home
-        $('#homeFirst .buttonWrapper').addClass('animated fadeInUp'); // show buttons
-        $('.bubbleWrap').addClass('active');
-        $('.bubble').addClass('animated fadeInUp');
-        $('body').removeClass('overflowHidden');
-        // $('#drift-widget-container').delay(4000).fadeIn(1000); // show Drift chat
-        // $('.header').addClass('active'); // show header
-    }
+    /*
+        function loadSite() {
+            $('#homeFirst .buttonList').show(); // show button container on home
+            $('#homeFirst .buttonWrapper').addClass('animated fadeInUp'); // show buttons
+            $('#homeFirst .bubbleWrap').addClass('active');
+            $('#homeFirst .bubble').addClass('animated fadeInUp');
+            // $('#drift-widget-container').delay(4000).fadeIn(1000); // show Drift chat
+            // $('.header').addClass('active'); // show header
+        }
 
-    function welcomeText() {
-        $("#welcomeText").typed({
-            strings: ["<h1>Fernando Rojo</h1> <p>Entrepreneur, designer, and developer.</p>"],
-            typeSpeed: 20,
-            callback: function () {
-                loadSite();
-            }
-        });
-    }
-
-    function bubbleScroll() { // make the bubbles move on scroll
-        var $bubbles = $('.bubbleWrap');
-        if (scroll < ($('#homeFirst').height() + window.innerHeight)) {
-            $bubbles.each(function (i) {
-                var horizontalScroll = -(scroll / 5);
-                if (i === 0) horizontalScroll = (scroll / 3);
-                $(this).css('transform', 'translate(' + horizontalScroll + 'px , -' + (scroll / 2) + 'px)');
+        function welcomeText() {
+            $("#welcomeText").typed({
+                strings: ["<h1>Fernando Rojo</h1> <p>Entrepreneur, designer, &amp; developer.</p>"],
+                typeSpeed: 20,
+                callback: function () {
+                    loadSite();
+                }
             });
         }
-    }
 
-    function workScroll() {
-        $('.workJawn').each(function () {
-            var theHeight = $(this).height(),
-                theScroll = scroll + $(window).height() - $(this).offset().top;
-            console.log(theScroll);
-            if (theScroll > theHeight || theScroll < 0) {
-                return;
+        function bubbleScroll() { // make the bubbles move on scroll
+            var $bubbles = $('.bubbleWrap');
+            if (scroll < ($('#homeFirst').height() + window.innerHeight)) {
+                $bubbles.each(function (i) {
+                    var horizontalScroll = -(scroll / 5);
+                    if (i === 0) horizontalScroll = (scroll / 3);
+                    $(this).css('transform', 'translate(' + horizontalScroll + 'px , -' + (scroll / 2) + 'px)');
+                });
             }
-            $(this).css('transform', 'translateY(-' + (theScroll / 4) + 'px)');
-        });
-    }
-
-    function headerFadeScroll() {
-        $('#homeSecond').find('h3, p').each(function () {
-            var distanceToTop = $(this).offset().top;
-            if (scroll >= (distanceToTop - $(window).height() - 50) && !$(this).hasClass('scrollingDone')) {
-                $(this).removeClass('fadeOut');
-                $(this).addClass('animated fadeIn');
-                $(this).removeAttr('style')
-            }
-        });
-    }
-
-    bubbleScroll();
-    headerFadeScroll();
-    workScroll();
-
-    if (window.location.hash) {
-        var hash = window.location.hash.substring(1), //Puts hash in variable, and removes the # character
-            splitHash = hash.replace('#', '').replace('.html', ''),
-            $newPage = $("#" + splitHash);
-        if ($newPage.length != 0) {
-            $('.page').removeClass('active');
-            $newPage.addClass('active');
-        };
-        if ($('#index').hasClass('active')) {
-            welcomeText();
         }
-    } else {
-        welcomeText();
-    }
 
-    $(window).on('scroll', function () {
-        scroll = $(window).scrollTop();
-        bubbleScroll();
-        headerFadeScroll();
-        workScroll();
-    });
-
-    $('a[href$=".html"]').on('click', function (e) { // simulate page changes without actually changing page
-
-        var $currentPage = $('page.active'),
-            $link = $(this).attr('href').replace('.html', ''),
-            $targetPage = $('#' + $link),
-            $this = $(this);
-        if ($targetPage.length !== 0) {
-            e.preventDefault(); // if the <page> exists
-            if ($this.attr('target') != '_blank' && !$targetPage.hasClass('active')) { // if it isn't target blank 
-                $('page').removeClass('active');
-                $targetPage.addClass('active');
+        
+        
+        function loadPage(url) {
+            if (url !== 'index.html') {
+                url = 'pages/' + url;
             }
-        };
-        window.location.hash = '#' + $link;
+            $('.page').load(url + '.html .eject');
+            $(window).scrollTop(0);
+            pageHistoryState = parseFloat(pageHistoryState + 1);
+            history.pushState(pageHistoryState, null, url);
+        }
+
+        $body.on('click', '[data-page-link]', function (e) {
+            var link = $(this).attr('data-page-link');
+            loadPage(link);
+        });
+        */
+
+    $window.on('scroll', function () {
+        scroll = $(window).scrollTop();
     });
+
+    /*
+        if (window.location.pathname) {
+            var length = window.location.pathname.split('/').length,
+                link = window.location.pathname.split('/')[length - 1];
+            if (link === '' || link === 'index.html') {
+                loadPage('index')
+            }
+        }
+        */
 
 });

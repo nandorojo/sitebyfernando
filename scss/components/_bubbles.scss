@@ -1,8 +1,8 @@
 .bubbleWrap {
-    display: none;
-    &.active {
-        display: block;
-    }
+    //    display: none;
+    //    &.active {
+    //        display: block;
+    //    }
     transition: transform .1s ease;
     position: absolute;
     top: 0;
@@ -37,7 +37,7 @@
         border: solid 8px;
         border-color: transparent transparent transparent white;
         transform: rotate(45deg);
-    }
+    } // sizes
     &.mini {
         width: 40px;
         height: 40px;
@@ -65,7 +65,7 @@
     &.xLarge {
         width: 40vw;
         height: 40vw;
-    }
+    } // colors
     &.prim {
         background: $color-primary;
     }
@@ -78,11 +78,14 @@
     &.quad {
         background: $color-quadruple;
     }
+    &.bg {
+        background: $color-background;
+    } // positions
     &.one {
         top: auto;
         bottom: -3%;
         left: -25%;
-        @include mq($from: tablet) {
+        @include mq($from: desktop) {
             top: 20%;
             left: -2%;
             bottom: auto;
@@ -92,7 +95,7 @@
     &.two {
         top: -25%;
         right: 30%;
-        @include mq($from: tablet) {
+        @include mq($from: desktop) {
             top: 3%;
             right: 10%;
         }
@@ -101,7 +104,7 @@
     &.three {
         top: 17%;
         right: 4%;
-        @include mq($from: tablet) {
+        @include mq($from: desktop) {
             top: 20%;
             right: 3%;
         }
@@ -110,10 +113,32 @@
     &.four {
         top: 76%;
         right: -9%;
-        @include mq($from: tablet) {
+        @include mq($from: desktop) {
             top: 65%;
             right: 10%;
         }
         animation-delay: .96s;
+    }
+    #pressHome & {
+        &.two {
+            @include mq($until: desktop) {
+                top: -4%;
+                right: 30%;
+            }
+        }
+        &.four {
+            @include mq($from: desktop) {
+                top: 65%;
+                left: 21%
+            }
+        }
+    }
+    #pressHome & {
+        &.three {
+            @include mq($until: desktop) {
+                left: 3%;
+                right: auto;
+            }
+        }
     }
 }
