@@ -1,3 +1,20 @@
 .animated {
-    animation-duration: .5s
+    animation-delay: .15s;
+    animation-duration: .5s;
+}
+
+.animate-delay-25s {
+    animation-delay: .25s;
+}
+
+.animate-delay-40s {
+    animation-delay: .4s;
+}
+
+.animate-delay-50s {
+    animation-delay: .5s;
+}
+
+.animate-delay-75s {
+    animation-delay: .75s;
 }
