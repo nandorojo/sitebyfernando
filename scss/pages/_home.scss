@@ -1,13 +1,23 @@
 /* Pages -> Home Styles */
 
-#pressHome {
+#workHome {
     background: $color-secondary;
     color: $color-background;
 }
 
-#workHome {
+#pressHome {
     background: $color-tertiary;
     color: $color-background;
+}
+
+#workHomeContent {
+    .logo {
+        width: 200px;
+    }
+    .pos-lg-sticky {
+        top: 0;
+        left: 0;
+    }
 }
 
 #hireme {
@@ -18,15 +28,15 @@
     color: $color-background;
 }
 
-#pressContent {
+.pressContent {
     .subtitle {
         font-size: .5em;
     }
+    p {
+        font-weight: 600
+    }
     h2 {
         margin-bottom: 2rem;
-    }
-    h3 {
-        font-weight: 400;
     }
     img {
         width: 150px;
