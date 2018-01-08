@@ -10,7 +10,7 @@ header.header {
     transform: translateY(-100%);
     &[data-js-scrolled] {
         background: $color-background;
-        box-shadow: 0px -8px 20px 0 grey;
+//        box-shadow: 0px -8px 20px 0 grey;
         transform: translateY(0)
     }
     h2 {

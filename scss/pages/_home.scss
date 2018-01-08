@@ -18,6 +18,12 @@
         top: 0;
         left: 0;
     }
+    @include mq($from:tablet) { // fix issue where fixed paragraph might be covered by a small-height screen
+        [data-fix-child] {
+            overflow: scroll;
+            max-height: calc(100% - 81px); // header height
+        }
+    }
 }
 
 #hireme {
@@ -26,6 +32,9 @@
     }
     background: $color-primary;
     color: $color-background;
+    a {
+        color: inherit;
+    }
 }
 
 .pressContent {
