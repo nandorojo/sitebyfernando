@@ -15,15 +15,18 @@
     background-position: initial;
     @include transition-all;
     transition-duration: .25s;
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,0.15);
     &:hover {
         transform: translateY(-1px);
         background-position: 99% center;
+        color: $color-background;
     }
     &.button--outline {
         color: $color-foreground;
         background-color: $color-background;
         padding: 5px 12px;
         border: solid 3px;
+        box-shadow: none;
         @include mq($from: tablet) {
             padding: 12px 27px;
         }

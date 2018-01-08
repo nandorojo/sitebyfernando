@@ -3,11 +3,12 @@ $(document).ready(function () {
     var $window = $(window),
         $document = $(document),
         $body = $('body'),
-        scroll = $window.scrollTop(),
+        scrollDistance = $window.scrollTop(),
         screenWidth = $window.width(),
         screenHeight = $window.height(),
         $yipee = $('.yipee'),
-        $header = $('header.header');
+        $header = $('header.header'),
+        scroll = new SmoothScroll('a[href*="#"]');
 
     // since position: sticky isn't working for who the fuck knows why, here's a temporary work-around...
     // TODO get rid of this and replace it with CSS 
@@ -26,12 +27,12 @@ $(document).ready(function () {
             breakpoint = $parent.data('fix-breakpoint'),
             screenWidth = $window.width();
         $parent.removeClass('d-lg-flex').removeClass('align-items-lg-end');
-        if (screenWidth < breakpoint || scroll <= parentOffset - headerHeight) {
+        if (screenWidth < breakpoint || scrollDistance <= parentOffset - headerHeight) {
             $child.removeAttr('style');
             $parent.removeAttr('style');
             return;
         }
-        if (scroll + headerHeight > parentOffset && scroll < parentOffset + parentHeight - childHeight - headerHeight) {
+        if (scrollDistance + headerHeight > parentOffset && scrollDistance < parentOffset + parentHeight - childHeight - headerHeight) {
             $child.css({
                 'position': 'fixed',
                 'top': headerHeight,
@@ -40,7 +41,7 @@ $(document).ready(function () {
             });
             return;
         }
-        if (scroll >= parentOffset + parentHeight - childHeight - headerHeight) {
+        if (scrollDistance >= parentOffset + parentHeight - childHeight - headerHeight) {
             $child.css({ // TODO change to a class
                 'position': 'static'
             });
@@ -53,18 +54,18 @@ $(document).ready(function () {
         //            $yipee.hide();
         //            return;
         //        }
-        $yipee.show().css('width', ((scroll) / ($document.height() - screenHeight)) * 100 + '%');
+        $yipee.show().css('width', ((scrollDistance) / ($document.height() - screenHeight)) * 100 + '%');
     }
     
     function headerScroll() {
-        if (scroll > ($('section').first().height() / 2)) {
+        if (scrollDistance > ($('section').first().height() / 2)) {
             $header.attr('data-js-scrolled', '');
         } else {
             $header.removeAttr('data-js-scrolled');
         }
     }
 
-    if (scroll > 0) {
+    if (scrollDistance > 0) {
         fixScroll();
         yipee();
         headerScroll();
@@ -122,7 +123,7 @@ $(document).ready(function () {
         */
 
     $window.on('scroll resize touchstart', function () {
-        scroll = $(window).scrollTop();
+        scrollDistance = $(window).scrollTop();
         fixScroll();
         yipee();
         headerScroll();

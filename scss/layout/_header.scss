@@ -7,7 +7,8 @@ header.header {
     width: 100%;
     @include transition-all;
     z-index: 1;
-    transform: translateY(-100%);
+    transform: translateY(-200%);
+    border-bottom: 1px solid #80808033;
     &[data-js-scrolled] {
         background: $color-background;
 //        box-shadow: 0px -8px 20px 0 grey;
