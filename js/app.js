@@ -23,15 +23,21 @@ $(document).ready(function () {
             parentOffset = $parent.offset().top,
             headerHeight = $header.height(),
             left = $child.offset().left,
-            width = $parent.width(),
+            width = $parent.width() - parseFloat($parent.css('padding').replace('px', ''))*2, // fixes padding width of parent
             breakpoint = $parent.data('fix-breakpoint'),
             screenWidth = $window.width();
         $parent.removeClass('d-lg-flex').removeClass('align-items-lg-end');
+        // don't run the function if...
+        // screen size is too small
+        // OR if your scroll position is too high
         if (screenWidth < breakpoint || scrollDistance <= parentOffset - headerHeight) {
             $child.removeAttr('style');
             $parent.removeAttr('style');
             return;
         }
+        // run the function if...
+        // you've scrolled to the right position (accounting for the header that's also fixed)
+        // AND you haven't scrolled too far
         if (scrollDistance + headerHeight > parentOffset && scrollDistance < parentOffset + parentHeight - childHeight - headerHeight) {
             $child.css({
                 'position': 'fixed',
@@ -41,6 +47,8 @@ $(document).ready(function () {
             });
             return;
         }
+        // if you've scrolled too far...
+        // align the child to the bottom of the parent by CSS and make its position static once again so it returns to the DOM flow
         if (scrollDistance >= parentOffset + parentHeight - childHeight - headerHeight) {
             $child.css({ // TODO change to a class
                 'position': 'static'
